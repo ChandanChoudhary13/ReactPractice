@@ -1,32 +1,31 @@
-import React, { Component, Profiler } from 'react';
+import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Counter from './Components/Counter';
-import Home from './Components/Home';
-import Profile from './Components/Profile';
+import { connect } from 'react-redux'
 
-class App extends Component {
-  state = {
-    name: "App Name- Mr.Apple"
-  }
-
-  changeName(name) {
-    this.setState({
-      name: name
-    })
-  };
-
-  render() {
-    return (
-      <div className="App" >
-
-        <Home handleNameChild={(name) => this.changeName(name)}></Home>
-        <Profile name={this.state.name}></Profile>
-        <h1>I am from APP : {this.state.name}</h1>
-
+function App(props) {
+  console.log(props);
+  return (
+    <div className="App">
+      <div>
+        <h1>I am App Component</h1>
+        <h1>My Name is : {props.myname}</h1>
+        <button onClick={() => { props.changeName("suresh") }}>Change Name</button>
       </div>
-    );
+    </div>
+  );
+}
+
+const mapStoreToProps = (state) => {
+  return {
+    myname: state.name
   }
 }
 
-export default App;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    //Pass Type and Payload
+    changeName: (name) => { dispatch({ type: "CHANGE_NAME", payload: name }) }
+  }
+}
+export default connect(mapStoreToProps, mapDispatchToProps)(App);
