@@ -1,7 +1,8 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
+import { anotherName } from './actions/myactions';
 
 function App(props) {
   console.log(props);
@@ -10,7 +11,7 @@ function App(props) {
       <div>
         <h1>I am App Component</h1>
         <h1>My Name is : {props.myname}</h1>
-        <button onClick={() => { props.changeName("suresh") }}>Change Name</button>
+        <button onClick={() => { props.changeName() }}>Change Name</button>
       </div>
     </div>
   );
@@ -25,7 +26,7 @@ const mapStoreToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     //Pass Type and Payload
-    changeName: (name) => { dispatch({ type: "CHANGE_NAME", payload: name }) }
+    changeName: () => { dispatch(anotherName()) }
   }
 }
 export default connect(mapStoreToProps, mapDispatchToProps)(App);
