@@ -1,6 +1,6 @@
 
 const iState = {
-    name: "Ramesh",
+    name: "Chandan",
     wishes: ["Eat", "Code"]
 }
 
