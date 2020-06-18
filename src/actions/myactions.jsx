@@ -21,3 +21,11 @@ export const anotherName = () => {
         dispatch({ type: 'CHANGE_NAME', payload: res2[0].name })
     }
 }
+
+
+export const addWish = () => {
+    return {
+        type: 'ADD_WISH',
+        payload: 'code'
+    }
+}
